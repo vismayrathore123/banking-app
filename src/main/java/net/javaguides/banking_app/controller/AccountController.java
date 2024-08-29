@@ -2,6 +2,7 @@ package net.javaguides.banking_app.controller;
 
 import net.javaguides.banking_app.dto.AccountDto;
 import net.javaguides.banking_app.service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +13,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
+    @Autowired
     private AccountService accountService;
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
