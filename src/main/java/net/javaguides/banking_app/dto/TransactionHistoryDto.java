@@ -13,4 +13,5 @@ public class TransactionHistoryDto {
     private double transactionAmount;
     private String transactionType;
     private LocalDateTime transactionDate;
+    private double balanceAfterTransaction;  // New field for remaining balance
 }

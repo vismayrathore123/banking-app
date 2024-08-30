@@ -7,7 +7,7 @@ public class AccountMapper {
 
     public static Account mapToAccount(AccountDto accountDto) {
         Account account = new Account();
-        account.setId(accountDto.getId()); // Set the ID if you want to use it, or omit this line if you want it to be auto-generated
+        account.setId(accountDto.getId());
         account.setAccountHolderName(accountDto.getAccountHolderName());
         account.setBalance(accountDto.getBalance());
         return account;

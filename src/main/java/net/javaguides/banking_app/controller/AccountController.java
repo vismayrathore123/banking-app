@@ -13,51 +13,54 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/accounts")
 public class AccountController {
+
+    private final AccountService accountService;
+
     @Autowired
-    private AccountService accountService;
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
-//add account rest api
+
+    // Add account REST API
     @PostMapping
-     public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto){
-        return new ResponseEntity<>(accountService.createAccount((accountDto)), HttpStatus.CREATED);
-     }
-     @GetMapping("/{id}")
-    //get account rest api
-    public ResponseEntity<AccountDto> getAccountbyId(@PathVariable  long id){
-        AccountDto accountDto=accountService.getAccountById(id);
-                return ResponseEntity.ok(accountDto);
-    }
-    // deposit REST API
-    @PutMapping("/{id}/deposit")
-    public ResponseEntity<AccountDto> deposit(@PathVariable Long id,@RequestBody  Map<String,Double> request){
-        Double amount= request.get("amount");
-   AccountDto accountDto= accountService.deposit(id,amount);
-     return ResponseEntity.ok(accountDto);
+    public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto) {
+        return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
-    //withdraw Rest API
-    @PutMapping("/{id}/withdraw")
-    public ResponseEntity<AccountDto> withdraw( @PathVariable Long id, @RequestBody  Map<String,Double> request ){
-        double amount=request.get("amount");
-        AccountDto accountDto= accountService.withdraw(id,amount);
+    // Get account by ID REST API
+    @GetMapping("/{id}")
+    public ResponseEntity<AccountDto> getAccountById(@PathVariable long id) {
+        AccountDto accountDto = accountService.getAccountById(id);
         return ResponseEntity.ok(accountDto);
     }
 
-    //get all account REST API
+    // Deposit REST API
+    @PutMapping("/{id}/deposit")
+    public ResponseEntity<AccountDto> deposit(@PathVariable long id, @RequestBody Map<String, Double> request) {
+        Double amount = request.get("amount");
+        AccountDto accountDto = accountService.deposit(id,amount);
+        return ResponseEntity.ok(accountDto);
+    }
+
+    // Withdraw REST API
+    @PutMapping("/{id}/withdraw")
+    public ResponseEntity<AccountDto> withdraw(@PathVariable Long id, @RequestBody Map<String, Double> request) {
+        Double amount = request.get("amount");
+        AccountDto accountDto = accountService.withdraw(id, amount);
+        return ResponseEntity.ok(accountDto);
+    }
+
+    // Get all accounts REST API
     @GetMapping
-    public ResponseEntity<List<AccountDto>> getAllAccounts(){
-       List<AccountDto> accounts= accountService.getAllAccounts();
-       return ResponseEntity.ok(accounts);
+    public ResponseEntity<List<AccountDto>> getAllAccounts() {
+        List<AccountDto> accounts = accountService.getAllAccounts();
+        return ResponseEntity.ok(accounts);
     }
 
-    //delete account REST API
+    // Delete account REST API
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> delete(@PathVariable Long id){
+    public ResponseEntity<String> deleteAccount(@PathVariable Long id) {
         accountService.deleteAccount(id);
-        return ResponseEntity.ok("Account delete successfully");
+        return ResponseEntity.ok("Account deleted successfully");
     }
-
-
 }

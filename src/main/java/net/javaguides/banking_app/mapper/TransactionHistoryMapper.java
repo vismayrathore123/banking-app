@@ -12,6 +12,7 @@ public class TransactionHistoryMapper {
         transactionHistory.setTransactionAmount(transactionHistoryDto.getTransactionAmount());
         transactionHistory.setTransactionType(transactionHistoryDto.getTransactionType());
         transactionHistory.setTransactionDate(transactionHistoryDto.getTransactionDate());
+        transactionHistory.setBalanceAfterTransaction(transactionHistoryDto.getBalanceAfterTransaction());
         return transactionHistory;
     }
 
@@ -21,7 +22,8 @@ public class TransactionHistoryMapper {
                 transactionHistory.getAccountId(),
                 transactionHistory.getTransactionAmount(),
                 transactionHistory.getTransactionType(),
-                transactionHistory.getTransactionDate()
+                transactionHistory.getTransactionDate(),
+                transactionHistory.getBalanceAfterTransaction()
         );
     }
 }

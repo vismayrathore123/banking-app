@@ -1,10 +1,7 @@
 package net.javaguides.banking_app.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -31,4 +28,7 @@ public class TransactionHistory {
 
     @Column(name = "transaction_date", nullable = false)
     private LocalDateTime transactionDate;
+
+    @Column(name = "balance_after_transaction", nullable = false)
+    private double balanceAfterTransaction;  // New column for remaining balance
 }
