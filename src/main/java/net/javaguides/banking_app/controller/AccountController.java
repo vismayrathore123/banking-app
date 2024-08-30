@@ -1,5 +1,6 @@
 package net.javaguides.banking_app.controller;
 
+import jakarta.validation.Valid;
 import net.javaguides.banking_app.dto.AccountDto;
 import net.javaguides.banking_app.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,10 @@ public class AccountController {
     }
 
     // Add account REST API
+
+
     @PostMapping
-    public ResponseEntity<AccountDto> addAccount(@RequestBody AccountDto accountDto) {
+    public ResponseEntity<AccountDto> addAccount(@Valid @RequestBody AccountDto accountDto) {
         return new ResponseEntity<>(accountService.createAccount(accountDto), HttpStatus.CREATED);
     }
 
